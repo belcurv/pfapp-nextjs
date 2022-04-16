@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0"
@@ -27,6 +30,15 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "jest": "^27.5.1",
-    "jest-css-modules": "^2.1.0"
+    "jest-css-modules": "^2.1.0",
+    "standard": "^16.0.4"
+  },
+  "standard": {
+    "env": {
+      "browser": true,
+      "es2020": true,
+      "node": true,
+      "jest": true
+    }
   }
 }
