@@ -1,7 +1,3 @@
+# pfapp-nextjs
 
-## Baseline NextJS starter app
-
-Credits:
-
- * https://benjaminwfox.com/blog/tech/nextjs-setup-config-testing-linting-absolute-imports
- * https://javascript.plainenglish.io/declarative-and-scalable-testing-with-react-testing-library-177f35f41396
+A small app with functions related to personal finance / FIRE.  This began as an experiment to replicate some of the TVM functions built into spreadsheets (Excel, Libre Office, etc.), specifically the future value (FV) and rate (RATE) functions.
