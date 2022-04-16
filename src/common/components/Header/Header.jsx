@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFireFlameCurved, faRoad, faFolderOpen } from '@fortawesome/free-solid-svg-icons'
+import { Container } from '@/common/components/Layout'
 import ActiveLink from '@/common/components/ActiveLink'
 import styles from './Header.module.css'
 
@@ -37,7 +38,7 @@ const navLinks = [
 export default function Header () {
   return (
     <header className={styles.header}>
-      <div className='container'>
+      <Container>
         <div className='grid'>
 
           <div className='grid__cell'>
@@ -76,7 +77,7 @@ export default function Header () {
 
           </nav>
         </div>
-      </div>
+      </Container>
     </header>
   )
 }
