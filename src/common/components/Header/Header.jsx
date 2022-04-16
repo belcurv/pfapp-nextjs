@@ -40,15 +40,15 @@ export default function Header () {
       <div className='container'>
         <div className='grid'>
 
-          <div className='grid-cell'>
+          <div className='grid__cell'>
             <ActiveLink href='/' title='Home' aria-label='Home nav link'>
               <h1>pfapp</h1>
             </ActiveLink>
           </div>
 
-          <nav className={`${styles.nav} grid-cell grid-cell--autoSize`}>
+          <nav className={`${styles.nav} grid__cell grid__cell--autoSize`}>
 
-            <div className={styles.navIcons} data-testid='header-nav-icons'>
+            <div className={styles.nav__icons} data-testid='header-nav-icons'>
               {navLinks.map(link => (
                 <ActiveLink
                   key={link.id}
@@ -61,7 +61,7 @@ export default function Header () {
               ))}
             </div>
 
-            <div className={styles.navText} data-testid='header-nav-text'>
+            <div className={styles.nav__text} data-testid='header-nav-text'>
               {navLinks.map(link => (
                 <ActiveLink
                   key={link.id}

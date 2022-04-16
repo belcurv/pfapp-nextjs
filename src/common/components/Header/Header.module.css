@@ -15,7 +15,7 @@
 
 .header h1,
 .header h4,
-.navIcons a {
+.nav__icons a {
   display: inline-block;
   margin: 0;
   height: 100%;
@@ -30,19 +30,19 @@
 }
 
 /* icon nav links visible when > @media query below */
-.navIcons {
+.nav__icons {
   display: inline-block;
   height: 100%;
 }
 
-.navIcons a {
+.nav__icons a {
   text-decoration: none;
   padding: .875rem 1rem;
   font-size: 22px;
 }
 
 /* text nav links invisible when < @media query below */
-.navText {
+.nav__text {
   display: none;
   height: 100%;
 }
@@ -59,7 +59,7 @@
 
 .header h4:hover,
 .header h1:hover,
-.navIcons a:hover {
+.nav__icons a:hover {
   border-bottom: 3px solid rgb(95, 158, 160);
   cursor: pointer;
   color: white;
@@ -67,18 +67,18 @@
 
 /* Greater than 640x, show nav text & hide icons */
 @media all and (min-width: 640px) {
-  .navText {
+  .nav__text {
     display: inline-block;
   }
 
-  .navIcons {
+  .nav__icons {
     display: none;
   }
 }
 
 /* Tiny screens: narrow nav icon spacing & full width content */
 @media all and (max-width: 360px) {
-  .navIcons a {
+  .nav__icons a {
     padding: 15px .5em;
   }
 }
