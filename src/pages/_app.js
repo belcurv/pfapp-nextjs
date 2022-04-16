@@ -1,6 +1,8 @@
-import Header from '@/common/components/Header'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
+import Header from '@/common/components/Header'
+import Footer from '@/common/components/Footer'
+import { Main } from '@/common/components/Layout'
 import '@/styles/globals.css'
 import '@/styles/grid.css'
 
@@ -11,7 +13,10 @@ function MyApp ({ Component, pageProps }) {
   return (
     <>
       <Header />
-      <Component {...pageProps} />
+      <Main>
+        <Component {...pageProps} />
+      </Main>
+      <Footer />
     </>
   )
 }

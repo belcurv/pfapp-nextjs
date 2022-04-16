@@ -1,0 +1,38 @@
+
+.footer {
+  flex: none;
+  padding: 0.85em 0;
+  background: #404040;
+  color: #999;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.footer-credit {
+  display: inline-block;
+  margin: .25em;
+  vertical-align: middle;
+}
+
+.footer-social {
+  display: inline-block;
+  vertical-align: middle;
+  height: 20px;
+  width: 106px;
+}
+
+.footer a {
+  color: #e5e5e5;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Tiny screens: narrow nav icon spacing & full width content */
+@media all and (max-width: 360px) {
+  .footer p {
+    font-size: 13px;
+  }
+}
