@@ -1,16 +1,80 @@
-html,
-body {
+/* quick reset */
+* {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+  border: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  font-size: 14px;
+  background: #bebbb5;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1em;
+  height: 100%;
+}
+
+/* Greater than 640x, show nav text & hide icons */
+@media all and (min-width: 640px) {
+  .cc-table td {
+    padding: 0.5rem;
+  }
+
+  .cc-table th {
+    padding: 0.15rem 0.5rem;
+  }
+
+}
+
+/* Tiny screens: narrow nav icon spacing & full width content */
+@media all and (max-width: 360px) {
+
+  .content-box {
+    padding: .25em .5em;
+  }
+
+  article {
+    padding: 0 0 0.5em 0;
+  }
+
+  section {
+    padding: 0.5em 0 0 0;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .cc-table th,
+  .cc-table td {
+    padding: 0.5rem 0.1rem;
+  }
+
+  .sm-col-hide {
+    display: none;
+    width: 0;
+    visibility: collapse;
+  }
 }
