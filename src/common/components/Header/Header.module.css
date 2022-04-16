@@ -65,10 +65,6 @@
   color: white;
 }
 
-.link-active.link-active {
-  color: white;
-}
-
 /* Greater than 640x, show nav text & hide icons */
 @media all and (min-width: 640px) {
   .navText {
