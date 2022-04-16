@@ -48,7 +48,7 @@ export default function Header () {
 
           <nav className={`${styles.nav} grid-cell grid-cell--autoSize`}>
 
-            <div className={styles.navIcons}>
+            <div className={styles.navIcons} data-testid='header-nav-icons'>
               {navLinks.map(link => (
                 <ActiveLink
                   key={link.id}
@@ -61,7 +61,7 @@ export default function Header () {
               ))}
             </div>
 
-            <div className={styles.navText}>
+            <div className={styles.navText} data-testid='header-nav-text'>
               {navLinks.map(link => (
                 <ActiveLink
                   key={link.id}
