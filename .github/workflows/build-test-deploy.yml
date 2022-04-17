@@ -28,30 +28,31 @@ jobs:
     permissions:
       deployments: write
     steps:
-      - name: start deployment
-        uses: bobheadxi/deployments@v1.1.0
-        id: deployment
-        with:
-          step: start
-          token: ${{ secrets.GITHUB_TOKEN }}
-          env: ${{ fromJSON('["Production", "Preview"]')[github.ref != 'refs/heads/main'] }}
+    - name: start deployment
+      uses: bobheadxi/deployments@v1
+      id: deployment
+      with:
+        step: start
+        token: ${{ secrets.GITHUB_TOKEN }}
+        env: ${{ fromJSON('["Production", "Preview"]')[github.ref != 'refs/heads/main'] }}
 
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
-      - uses: amondnet/vercel-action@v20.0.1
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-args: ${{ fromJSON('["--prod", ""]')[github.ref != 'refs/heads/main'] }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
-          scope: ${{ secrets.VERCEL_ORG_ID}}
-          working-directory: ./
+    - uses: amondnet/vercel-action@v20.0.1
+      with:
+        vercel-token: ${{ secrets.VERCEL_TOKEN }}
+        vercel-args: ${{ fromJSON('["--prod", ""]')[github.ref != 'refs/heads/main'] }}
+        vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
+        vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+        scope: ${{ secrets.VERCEL_ORG_ID}}
+        working-directory: ./
 
-      - name: update deployment status
-        uses: bobheadxi/deployments@v1.1.0
-        if: always()
-        with:
-          step: finish
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: ${{ job.status }}
-          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+    - name: update deployment status
+      uses: bobheadxi/deployments@v1
+      if: always()
+      with:
+        step: finish
+        token: ${{ secrets.GITHUB_TOKEN }}
+        status: ${{ job.status }}
+        env: ${{ steps.deployment.outputs.env }}
+        deployment_id: ${{ steps.deployment.outputs.deployment_id }}
