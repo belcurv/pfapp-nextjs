@@ -39,6 +39,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+        cache: 'npm'
+    - run: npm ci
+    - run: npm run build --if-present
+
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v20.0.1
       with:
@@ -47,7 +54,7 @@ jobs:
         vercel-org-id: ${{ secrets.VERCEL_ORG_ID}}
         vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
         scope: ${{ secrets.VERCEL_ORG_ID}}
-        working-directory: build
+        working-directory: dist
 
     - name: Update deployment status
       uses: bobheadxi/deployments@v1
