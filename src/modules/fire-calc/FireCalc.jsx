@@ -85,7 +85,7 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
                 id='requiredSavings'
                 type='text'
                 label='Required Savings'
-                value={getRequiredSavings()}
+                value={formatAsCurrency(getRequiredSavings())}
               />
             </div>
 
