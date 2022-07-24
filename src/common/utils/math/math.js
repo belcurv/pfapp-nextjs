@@ -1,5 +1,20 @@
 import dayjs from 'dayjs'
 
+// - hook
+
+export function useMathUtils () {
+  return {
+    formatAsCurrency,
+    formatAsPercentage,
+    calculateRequiredSavings,
+    calculateAge,
+    calcualteFutureValue,
+    calculateRequiredRate
+  }
+}
+
+// - helpers
+
 export function toDecimalPercentage (percentage) {
   return percentage > 1 ? percentage / 1000 : percentage
 }
@@ -14,6 +29,19 @@ export function formatAsCurrency (value) {
     currency: 'USD',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
+  }).format(value)
+}
+
+/**
+ * @param    {number|string}  value
+ * @returns  {string}
+ */
+export function formatAsPercentage (value) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'percent',
+    currency: 'USD',
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 3
   }).format(value)
 }
 

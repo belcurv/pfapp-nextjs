@@ -6,34 +6,76 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+
+/* vertically occupy viewport */
+#__next {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
-  margin: 0px;
-  padding: 0px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: 'Roboto', 'Arial', sans-serif;
   font-size: 14px;
   background: #bebbb5;
   color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+/* anti-iOS Safari / Webkit tweak */
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="date"],
+input[type="number"],
+.input-checkbox {
+  -webkit-appearance: none;
+  border-radius: 0;
+  margin: 0;
+}
+
+p, ul, li {
+  font-weight: normal;
+  font-size: 15px;
+}
+
+p {
+  margin: .5em 0;
+}
+
+input {
+  min-width: 1em;
+}
+
+/* Remove number spinner from Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Remove number spinner from Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Removes leftover margin */
+}
 
 .container {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 1em;
   height: 100%;
+}
+
+.content-box {
+  padding: .25em 1em;
+  background: #FFF;
+  border-left: 0.6em solid rgb(95, 158, 160);
+  width: 100%;
 }
 
 /* Greater than 640x, show nav text & hide icons */
