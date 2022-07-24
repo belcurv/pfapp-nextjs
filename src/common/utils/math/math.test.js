@@ -1,5 +1,7 @@
 import {
+  useMathUtils,
   formatAsCurrency,
+  formatAsPercentage,
   calculateRequiredSavings,
   calculateAge,
   calcualteFutureValue,
@@ -7,6 +9,20 @@ import {
 } from './math'
 
 describe('math utilities', () => {
+  describe('useMathUtils hook', () => {
+    it('should return an object of specific functions', () => {
+      const actual = useMathUtils()
+      expect(actual).toEqual({
+        calculateRequiredSavings: expect.any(Function),
+        calculateAge: expect.any(Function),
+        calcualteFutureValue: expect.any(Function),
+        calculateRequiredRate: expect.any(Function),
+        formatAsCurrency: expect.any(Function),
+        formatAsPercentage: expect.any(Function)
+      })
+    })
+  })
+
   describe('formatAsCurrency', () => {
     it('should format number inputs as USD with 2 decimals', () => {
       const actual = formatAsCurrency(20)
@@ -16,6 +32,18 @@ describe('math utilities', () => {
     it('should format string inputs as USD with 2 decimals', () => {
       const actual = formatAsCurrency('20')
       expect(actual).toBe('$20.00')
+    })
+  })
+
+  describe('formatAsPercentage', () => {
+    it('should format number inputs as percentage with 3 decimals', () => {
+      const actual = formatAsPercentage(0.05)
+      expect(actual).toBe('5.000%')
+    })
+
+    it('should format string inputs as percentage with 3 decimals', () => {
+      const actual = formatAsPercentage('0.12345')
+      expect(actual).toBe('12.345%')
     })
   })
 
