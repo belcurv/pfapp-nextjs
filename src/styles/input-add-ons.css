@@ -6,6 +6,12 @@
   display: flex;
 }
 
+.input--add-on-label {
+  flex: 0 0 auto;
+  background-color: rgba(147, 128, 108, 0.1);
+  color: #666666;
+}
+
 .input--add-on-field {
   flex: 1 1 auto;
 }
@@ -16,12 +22,6 @@
 
 .input--add-on-field:not(:last-child) {
   border-right: 0;
-}
-
-.input--add-on-label {
-  flex: 0 0 auto;
-  background-color: rgba(147, 128, 108, 0.1);
-  color: #666666;
 }
 
 .input--add-on-field,
