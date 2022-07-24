@@ -1,0 +1,35 @@
+
+.section {
+  flex: 0;
+  padding: 0.5em;
+}
+
+.section-header__button {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.section-header__button:not(:first-child) {
+  margin-left: .5em;
+}
+
+.section__title {
+  display: inline-block;
+  margin: 0;
+  padding: 0.25em 0;
+  color: #404040;
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.sub-section__title {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5em 0;
+  color: #404040;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
