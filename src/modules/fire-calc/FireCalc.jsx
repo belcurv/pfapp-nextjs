@@ -1,6 +1,140 @@
+import { SectionContainer, SectionHeader, SubSectionHeader } from '@/common/components/Section'
+import { InputCell } from '@/common/components/Input'
+import { useFireCalcManager } from './ContextProvider'
+import { formatAsCurrency, formatAsPercentage } from '@/common/utils/math'
 
-export default function FireCalc () {
+export default function FireCalc ({ onSaveClick, onDeleteClick }) {
+  const {
+    inputs,
+    setFieldValue,
+    getAge,
+    getYearsToFire,
+    getRequiredSavings,
+    getRequiredReturn,
+    getFutureValue
+  } = useFireCalcManager()
+
+  function handleFieldChange (event) {
+    const { id, value } = event.target
+    setFieldValue(id, value)
+  }
+
   return (
-    <h1>Fire Calc</h1>
+    <>
+      <SectionContainer>
+        <SectionHeader
+          title='FIRE Calculator'
+          onSaveClick={onSaveClick}
+          onDeleteClick={onDeleteClick}
+        />
+      </SectionContainer>
+
+      <SectionContainer>
+        <SubSectionHeader title='INPUTS'>
+          <h4 title='Help' className='icon-button'>
+            <span className='glyphicon glyphicon-question-sign'>halp</span>
+          </h4>
+        </SubSectionHeader>
+
+        <form className='grid grid--gutters grid--full med-grid--1of2 large-grid--1of3'>
+          {Object.values(inputs).map((field, i) => (
+            <InputCell
+              key={i}
+              tabIndex={i + 1}
+              id={field.id}
+              label={field.label}
+              type={field.type}
+              placeholder={field.placeholder}
+              value={field.value}
+              min={field.min}
+              max={field.max}
+              step={field.step}
+              readOnly={field.readOnly}
+              onChange={handleFieldChange}
+            />
+          ))}
+        </form>
+      </SectionContainer>
+
+      <SectionContainer>
+        <SubSectionHeader title='results'>
+          <h4 title='Help' className='icon-button'>
+            <span className='glyphicon glyphicon-question-sign'>halp</span>
+          </h4>
+        </SubSectionHeader>
+
+        <div className='grid grid--gutters grid--full large-grid--1of2-30-70'>
+          <div className='grid__cell'>
+            <div className='grid grid--gutters grid--full med-grid--1of2 large-grid--full'>
+              <InputCell
+                readOnly
+                id='calculatedAge'
+                type='text'
+                label='Calculated Age'
+                value={getAge()}
+              />
+              <InputCell
+                readOnly
+                id='yearsToFire'
+                type='text'
+                label='Years to FIRE'
+                value={getYearsToFire()}
+              />
+              <InputCell
+                readOnly
+                id='requiredSavings'
+                type='text'
+                label='Required Savings'
+                value={getRequiredSavings()}
+              />
+            </div>
+
+            <p>Given your expected annual retirement expenses ({formatAsCurrency(inputs.annualExpenses.value)})
+              and Safe Withdrawal Rate ({inputs.withdrawalRate.value}%), you will need a total of
+              {getRequiredSavings()} to FIRE.
+            </p>
+
+            <div className='grid grid--gutters grid--full med-grid--1of2 large-grid--full'>
+              <InputCell
+                readOnly
+                id='requiredReturn'
+                type='text'
+                label='Required Return'
+                value={formatAsPercentage(getRequiredReturn())}
+              />
+            </div>
+
+            <p>
+              Given annual contributions of {formatAsCurrency(inputs.annualSavings.value)}, to achieve your
+              required savings in {getYearsToFire()} years you need to earn an average return of
+              {formatAsPercentage(getRequiredReturn())}.
+            </p>
+
+            <div className='grid grid--gutters grid--full med-grid--1of2 large-grid--full'>
+              <InputCell
+                readOnly
+                id='futureValue'
+                type='text'
+                label='Future Value'
+                value={formatAsCurrency(getFutureValue())}
+              />
+            </div>
+
+            <p>
+              Given your initial savings of {formatAsCurrency(inputs.currentSavings.value)}, plus annual
+              contributions of {formatAsCurrency(inputs.annualSavings.value)}, earning {formatAsPercentage(inputs.rateOfReturn.value)},
+              your savings will total {formatAsCurrency(getFutureValue())} after {getYearsToFire()} years.
+            </p>
+
+          </div>
+        </div>
+      </SectionContainer>
+
+      <SectionContainer>
+        <pre style={{ fontSize: '10px' }}>
+          {JSON.stringify(inputs, null, 2)}
+        </pre>
+      </SectionContainer>
+    </>
   )
 }
