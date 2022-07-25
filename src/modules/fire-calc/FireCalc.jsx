@@ -1,7 +1,7 @@
 import { SectionContainer, SectionHeader, SubSectionHeader } from '@/common/components/Section'
 import { InputCell } from '@/common/components/Input'
-import { useFireCalcManager } from './ContextProvider'
 import { formatAsCurrency, formatAsPercentage } from '@/common/utils/math'
+import { useFireCalcManager } from './ContextProvider'
 
 export default function FireCalc ({ onSaveClick, onDeleteClick }) {
   const {
@@ -13,11 +13,6 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
     getRequiredReturn,
     getFutureValue
   } = useFireCalcManager()
-
-  function handleFieldChange (event) {
-    const { id, value } = event.target
-    setFieldValue(id, value)
-  }
 
   return (
     <>
@@ -50,7 +45,7 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
               max={field.max}
               step={field.step}
               readOnly={field.readOnly}
-              onChange={handleFieldChange}
+              onChange={event => setFieldValue(event.target.id, event.target.value)}
             />
           ))}
         </form>
