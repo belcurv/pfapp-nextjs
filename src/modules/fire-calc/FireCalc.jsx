@@ -90,8 +90,8 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
             </div>
 
             <p>Given your expected annual retirement expenses ({formatAsCurrency(inputs.annualExpenses.value)})
-              and Safe Withdrawal Rate ({inputs.withdrawalRate.value}%), you will need a total of
-              {getRequiredSavings()} to FIRE.
+              and Safe Withdrawal Rate ({inputs.withdrawalRate.value}%), you will need a total
+              of {formatAsCurrency(getRequiredSavings())} to FIRE.
             </p>
 
             <div className='grid grid--gutters grid--full med-grid--1of2 large-grid--full'>
@@ -106,8 +106,8 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
 
             <p>
               Given annual contributions of {formatAsCurrency(inputs.annualSavings.value)}, to achieve your
-              required savings in {getYearsToFire()} years you need to earn an average return of
-              {formatAsPercentage(getRequiredReturn())}.
+              required savings in {getYearsToFire()} years you need to earn an average return
+              of {formatAsPercentage(getRequiredReturn())}.
             </p>
 
             <div className='grid grid--gutters grid--full med-grid--1of2 large-grid--full'>

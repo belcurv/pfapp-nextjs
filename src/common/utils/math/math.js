@@ -86,57 +86,35 @@ export function calcualteFutureValue ({ rate, nper, pmt, pv, type = 0 }) {
 }
 
 /**
- * TVM Rate solver
- * Credit: http://stackoverflow.com/questions/12064793/simple-financial-rate-function-in-javascript
+ * Find rate via binary search. Close enough!
  * @param   {Object}  args
  * @param   {number}  args.nper   Number of periods in years
  * @param   {number}  args.pmt    Annual payment (should be NEGATIVE number)
  * @param   {number}  args.pv     Present value (POSITIVE number)
  * @param   {number}  args.fv     Target future value
  * @param   {number}  args.type   TVM FV type
- * @param   {number}  args.guess  Rate launch point
  * @returns {number}              Rate as decimal (ie. .07 ... not 7%)
  */
-export function calculateRequiredRate ({ nper, pmt, pv, fv = 0, type = 0, guess = 0.01 }) {
-  const FINANCIAL_MAX_ITERATIONS = 128 // Bet accuracy with 128
-  const FINANCIAL_PRECISION = 0.0000001 // 1.0e-8
+export function calculateRequiredRate ({ nper, pmt, pv, fv = 0, type = 0 }) {
+  const FINANCIAL_PRECISION = 0.0001
+  let maxIterations = 128
+  let low = 0
+  let high = 2
+  let rate = 0.05 // initial guess
+  let delta = 1
 
-  let y
-  let y0
-  let y1
-  let x0
-  let x1 = 0
-  let f = 0
-  let i = 0
-  let rate = guess
+  while (low < high && maxIterations > 0 && delta > FINANCIAL_PRECISION) {
+    const testFv = calcualteFutureValue({ rate, nper, pmt: -pmt, pv: -pv, type })
 
-  if (Math.abs(rate) < FINANCIAL_PRECISION) {
-    y = pv * (1 + nper * rate) + pmt * (1 + rate * type) * nper + fv
-  } else {
-    f = Math.exp(nper * Math.log(1 + rate))
-    y = pv * f + pmt * (1 / rate + type) * (f - 1) + fv
-  }
-  y0 = pv + pmt * nper + fv
-  y1 = pv * f + pmt * (1 / rate + type) * (f - 1) + fv
-
-  // find root by Newton secant method
-  i = x0 = 0.0
-  x1 = rate
-  while ((Math.abs(y0 - y1) > FINANCIAL_PRECISION) && (i < FINANCIAL_MAX_ITERATIONS)) {
-    rate = (y1 * x0 - y0 * x1) / (y1 - y0)
-    x0 = x1
-    x1 = rate
-
-    if (Math.abs(rate) < FINANCIAL_PRECISION) {
-      y = pv * (1 + nper * rate) + pmt * (1 + rate * type) * nper + fv
+    if (testFv < fv) {
+      low = rate + FINANCIAL_PRECISION
     } else {
-      f = Math.exp(nper * Math.log(1 + rate))
-      y = pv * f + pmt * (1 / rate + type) * (f - 1) + fv
+      high = rate - FINANCIAL_PRECISION
     }
 
-    y0 = y1
-    y1 = y
-    i += 1
+    rate = (high + low) / 2
+    delta = Math.abs((testFv - fv) / testFv)
+    maxIterations--
   }
 
   return rate
