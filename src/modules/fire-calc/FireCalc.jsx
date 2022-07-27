@@ -1,7 +1,8 @@
 import { SectionContainer, SectionHeader, SubSectionHeader } from '@/common/components/Section'
 import { InputCell } from '@/common/components/Input'
 import { formatAsCurrency, formatAsPercentage } from '@/common/utils/math'
-import { useFireCalcManager } from './ContextProvider'
+import { useFireCalcManager } from './Providers/ContextProvider'
+import Chart from './Components/Chart'
 
 export default function FireCalc ({ onSaveClick, onDeleteClick }) {
   const {
@@ -122,13 +123,17 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
             </p>
 
           </div>
-        </div>
-      </SectionContainer>
 
-      <SectionContainer>
-        <pre style={{ fontSize: '10px' }}>
-          {JSON.stringify(inputs, null, 2)}
-        </pre>
+          <div className='grid__cell'>
+            <Chart
+              requiredSavings={getRequiredSavings()}
+              rateOfReturn={inputs.rateOfReturn.value}
+              timeHorizon={getYearsToFire()}
+              annualSavings={inputs.annualSavings.value}
+              currentSavings={inputs.currentSavings.value}
+            />
+          </div>
+        </div>
       </SectionContainer>
     </>
   )

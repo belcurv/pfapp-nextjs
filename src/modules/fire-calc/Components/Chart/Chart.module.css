@@ -1,0 +1,52 @@
+.chart {
+  background: rgba(190, 190, 190, .1);
+  margin: 0;
+  padding: 0;
+}
+
+.chart__polygon {
+  fill: rgba(0, 116, 217, .15);
+  stroke: none;
+/*   transition: fill .3s ease;*/
+}
+
+.chart__polygon:hover,
+.chart__polygon:active {
+  fill: rgba(0, 116, 217, .95);
+}
+
+.chart__axis,
+.chart__axis-tick {
+  stroke: black;
+  stroke-dasharray: 0;
+  stroke-width: 1;
+}
+
+.chart__horiz-rule {
+  stroke: rgba(60, 60, 60, .3);
+  stroke-dasharray: 0;
+  stroke-width: 1;
+}
+
+.chart__goal-line {
+  stroke: rgba(217, 116, 0, .75);
+  stroke-dasharray: 3 2;
+  stroke-width: 1;
+}
+
+.chart__goal-text {
+  font-size: 10px;
+  fill: rgba(217, 116, 0, .75);
+  stroke: none;
+  text-anchor: start;
+}
+
+.chart__labels--x-axis {
+  font-size: 10px;
+  text-anchor: middle;
+}
+
+.chart__labels--y-axis {
+  font-size: 10px;
+  text-anchor: end;
+}
