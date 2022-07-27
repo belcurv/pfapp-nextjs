@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext } from 'react'
 import produce from 'immer'
 import { isFunction } from '@/common/utils/is-function'
 import { useMathUtils } from '@/common/utils/math'
-import { fieldConfig } from './config'
+import { fieldConfig } from '../config'
 
 const INITIAL_STATE = {
   inputs: fieldConfig
