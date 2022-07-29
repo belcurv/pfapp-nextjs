@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import memo from 'nano-memoize'
 
 // - hook
 
@@ -95,7 +96,7 @@ export function calcualteFutureValue ({ rate, nper, pmt, pv, type = 0 }) {
  * @param   {number}  args.type   TVM FV type
  * @returns {number}              Rate as decimal (ie. .07 ... not 7%)
  */
-export function calculateRequiredRate ({ nper, pmt, pv, fv = 0, type = 0 }) {
+export const calculateRequiredRate = memo(({ nper, pmt, pv, fv = 0, type = 0 }) => {
   const FINANCIAL_PRECISION = 0.0001
   let maxIterations = 128
   let low = 0
@@ -118,4 +119,4 @@ export function calculateRequiredRate ({ nper, pmt, pv, fv = 0, type = 0 }) {
   }
 
   return rate
-}
+})
