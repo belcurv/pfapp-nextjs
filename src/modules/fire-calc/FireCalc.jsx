@@ -118,7 +118,7 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
 
             <p>
               Given your initial savings of {formatAsCurrency(inputs.currentSavings.value)}, plus annual
-              contributions of {formatAsCurrency(inputs.annualSavings.value)}, earning {formatAsPercentage(inputs.rateOfReturn.value)},
+              contributions of {formatAsCurrency(inputs.annualSavings.value)}, earning {formatAsPercentage(inputs.rateOfReturn.value / 100)},
               your savings will total {formatAsCurrency(getFutureValue())} after {getYearsToFire()} years.
             </p>
 
