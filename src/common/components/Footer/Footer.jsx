@@ -7,14 +7,14 @@ export default function Footer () {
       <Container>
         <iframe
           className={styles['footer-social']}
-          src='https://ghbtns.com/github-btn.html?user=belcurv&amp;repo=pfapp&amp;type=watch&amp;count=true'
+          src='https://ghbtns.com/github-btn.html?user=belcurv&amp;repo=pfapp-nextjs&amp;type=watch&amp;count=true'
           allowtransparency='true'
           scrolling='0'
           frameBorder='0'
         />
 
         <p className={styles['footer-credit']}>
-          pfapp v2.2.1 : : by <a href='https://github.com/belcurv' target='_blank' rel='noreferrer'>belcurv</a>
+          pfapp-nextjs v0.0.0 : : by <a href='https://github.com/belcurv/pfapp-nextjs' target='_blank' rel='noreferrer'>belcurv</a>
         </p>
 
         <p className={styles['footer-credit']}>
