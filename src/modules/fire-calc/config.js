@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { isNumber } from '@/common/utils/is-number'
 
 export const fieldConfig = {
   birthDate: {
@@ -6,9 +7,11 @@ export const fieldConfig = {
     label: 'Birth Date',
     type: 'date',
     value: '1980-01-01',
+    isValid: true,
     validate (value) {
       const date = dayjs(value)
-      return date.isValid() && !date.isAfter(dayjs, 'date')
+      this.isValid = date.isValid() && !date.isAfter(dayjs, 'date')
+      return this.isValid
     }
   },
   retirementAge: {
@@ -20,8 +23,10 @@ export const fieldConfig = {
     min: 1,
     max: 100,
     step: 1,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min && Number(value) <= this.max
+      this.isValid = isNumber(value) && Number(value) >= this.min && Number(value) <= this.max
+      return this.isValid
     }
   },
   annualExpenses: {
@@ -33,8 +38,10 @@ export const fieldConfig = {
     min: 1,
     max: 1000000,
     step: 1,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min && Number(value) <= this.max
+      this.isValid = isNumber(value) && Number(value) >= this.min && Number(value) <= this.max
+      return this.isValid
     }
   },
   withdrawalRate: {
@@ -46,8 +53,10 @@ export const fieldConfig = {
     min: 0.5,
     max: 10,
     step: 0.1,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min && Number(value) <= this.max
+      this.isValid = isNumber(value) && Number(value) >= this.min && Number(value) <= this.max
+      return this.isValid
     }
   },
   currentSavings: {
@@ -58,8 +67,10 @@ export const fieldConfig = {
     placeholder: 'ex 250000',
     min: 0,
     step: 0.01,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min
+      this.isValid = isNumber(value) && Number(value) >= this.min
+      return this.isValid
     }
   },
   rateOfReturn: {
@@ -71,8 +82,10 @@ export const fieldConfig = {
     min: 0.05,
     max: 100,
     step: 0.01,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min && Number(value) <= this.max
+      this.isValid = isNumber(value) && Number(value) >= this.min && Number(value) <= this.max
+      return this.isValid
     }
   },
   annualSavings: {
@@ -83,16 +96,24 @@ export const fieldConfig = {
     placeholder: 'ex: 25000',
     min: 0,
     step: 0.01,
+    isValid: true,
     validate (value) {
-      return Number(value) >= this.min
+      this.isValid = isNumber(value) && Number(value) >= this.min
+      return this.isValid
     }
   },
   monthlySavings: {
     id: 'monthlySavings',
     label: 'Monthly Savings ($)',
-    type: 'text',
-    value: '0',
-    readOnly: true,
-    tabIndex: -1
+    type: 'number',
+    value: '',
+    placeholder: 'ex: 2000',
+    min: 0,
+    step: 0.01,
+    isValid: true,
+    validate (value) {
+      this.isValid = isNumber(value) && Number(value) >= this.min
+      return this.isValid
+    }
   }
 }

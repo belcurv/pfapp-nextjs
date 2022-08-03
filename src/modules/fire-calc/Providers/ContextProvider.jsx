@@ -26,7 +26,6 @@ const useFireCalcManager = () => {
   const state = useContext(FireStateContext)
   const setState = useContext(FireStateUpdaterContext)
   const {
-    formatAsCurrency,
     calculateAge,
     calculateRequiredSavings,
     calculateRequiredRate,
@@ -39,13 +38,14 @@ const useFireCalcManager = () => {
 
   const setFieldValue = (fieldId, value) => setState(produce(draft => {
     if (draft.inputs[fieldId] == null) return
-    if (isFunction(draft.inputs[fieldId].validate)) {
-      const isValid = draft.inputs[fieldId].validate(value)
-      if (!isValid) return
-    }
+    if (isFunction(draft.inputs[fieldId].validate)) draft.inputs[fieldId].validate(value)
 
     if (fieldId === 'annualSavings') {
-      draft.inputs.monthlySavings.value = formatAsCurrency(value / 12)
+      draft.inputs.monthlySavings.value = Number(value / 12).toFixed(2)
+    }
+
+    if (fieldId === 'monthlySavings') {
+      draft.inputs.annualSavings.value = Number(value * 12).toFixed(2)
     }
 
     draft.inputs[fieldId].value = value
@@ -65,10 +65,12 @@ const useFireCalcManager = () => {
   }
 
   const getRequiredSavings = () => {
-    const annualExpenses = state.inputs.annualExpenses.value
-    const withdrawalRate = state.inputs.withdrawalRate.value
-    if (!annualExpenses || !withdrawalRate) return 0
-    return calculateRequiredSavings({ annualExpenses, withdrawalRate: withdrawalRate / 100 })
+    const { annualExpenses, withdrawalRate } = state.inputs
+    if (!annualExpenses.isValid || !withdrawalRate.isValid) return 0
+    return calculateRequiredSavings({
+      annualExpenses: annualExpenses.value,
+      withdrawalRate: withdrawalRate.value / 100
+    })
   }
 
   const getRequiredReturn = () => {

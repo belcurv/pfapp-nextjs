@@ -16,6 +16,10 @@
   flex: 1 1 auto;
 }
 
+.input--add-on-field.input--add-on-invalid {
+  background-color: rgba(255, 128, 108, 0.3);
+}
+
 .input--add-on-field:not(:first-child) {
   border-left: 0;
 }
