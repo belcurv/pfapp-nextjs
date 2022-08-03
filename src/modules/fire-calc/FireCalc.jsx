@@ -46,6 +46,7 @@ export default function FireCalc ({ onSaveClick, onDeleteClick }) {
               max={field.max}
               step={field.step}
               readOnly={field.readOnly}
+              isValid={field.isValid}
               onChange={event => setFieldValue(event.target.id, event.target.value)}
             />
           ))}

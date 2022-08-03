@@ -40,8 +40,7 @@ export function formatAsCurrency (value) {
 export function formatAsPercentage (value) {
   return new Intl.NumberFormat('en-US', {
     style: 'percent',
-    currency: 'USD',
-    minimumFractionDigits: 3,
+    minimumFractionDigits: 0,
     maximumFractionDigits: 3
   }).format(value)
 }

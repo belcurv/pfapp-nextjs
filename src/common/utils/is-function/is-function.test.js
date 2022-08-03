@@ -16,7 +16,7 @@ describe('isFunction()', () => {
     expect(isFunction(fn)).toBe(true)
   })
 
-  it('should return false for noon-functions', () => {
+  it('should return false for non-functions', () => {
     expect(isFunction('fn')).toBe(false)
     expect(isFunction('0')).toBe(false)
     expect(isFunction('1')).toBe(false)
