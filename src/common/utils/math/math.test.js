@@ -36,9 +36,9 @@ describe('math utilities', () => {
   })
 
   describe('formatAsPercentage', () => {
-    it('should format number inputs as percentage with 3 decimals', () => {
+    it('should format number inputs as percentage with 0 decimals', () => {
       const actual = formatAsPercentage(0.05)
-      expect(actual).toBe('5.000%')
+      expect(actual).toBe('5%')
     })
 
     it('should format string inputs as percentage with 3 decimals', () => {
